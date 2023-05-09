@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerThirdCam : MonoBehaviour
 {
     //new input system
-    public PlayerInput _playerInput;
+    private PlayerInputMap _playerInput;
     [Header("References")]
     public Transform player;
     public Transform playerObj;
@@ -19,7 +19,8 @@ public class PlayerThirdCam : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        _playerInput = GetComponent<PlayerInput>();
+        _playerInput = new PlayerInputMap();
+        _playerInput.Juego.Enable();
     }
 
     // Update is called once per frame
@@ -29,7 +30,7 @@ public class PlayerThirdCam : MonoBehaviour
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         
 
-        float horizontalInput = _playerInput.actions["HorizontalMove"].ReadValue<Vector2>().x;
-        float verticalInput = _playerInput.actions["VerticalMove"].ReadValue<Vector2>().y;
+        float horizontalInput = _playerInput.Juego.Camera.ReadValue<Vector2>().x;
+        float verticalInput = _playerInput.Juego.Camera.ReadValue<Vector2>().y;
     }
 }

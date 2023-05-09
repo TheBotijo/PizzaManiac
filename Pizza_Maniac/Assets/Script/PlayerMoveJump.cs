@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMoveJump : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class PlayerMoveJump : MonoBehaviour
     float horizontalInput;
     float verticalInput;
     public Transform orientation;
+    private PlayerInputMap _playerInput;
+    
 
     Vector3 moveDirection;
 
@@ -25,10 +28,6 @@ public class PlayerMoveJump : MonoBehaviour
 
     public float groundDrag;
 
-    //Variables de Jump
-    [Header("Keybinds")]
-    public KeyCode jumpKey = KeyCode.Space;
-
     [Header("Jump")]
     public float jumpForce;
     public float jumpCooldown;
@@ -37,6 +36,8 @@ public class PlayerMoveJump : MonoBehaviour
 
     private void Start()
     {
+        _playerInput = new PlayerInputMap();
+        _playerInput.Juego.Enable();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation= true;
 
@@ -50,6 +51,7 @@ public class PlayerMoveJump : MonoBehaviour
 
         UserInput();
         SpeedControl();
+        PlayMove();
 
         //comprovem si toca el terra per aplicar un fregament al player
         if (grounded)
@@ -57,20 +59,16 @@ public class PlayerMoveJump : MonoBehaviour
         else
             rb.drag = 0;
     }
-    private void FixedUpdate()
-    {
-        PlayMove();
-    }
     private void UserInput()
     {
         //recollir inputs de moviment en els eixos
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        horizontalInput = _playerInput.Juego.Move.ReadValue<Vector2>().x;
+        verticalInput = _playerInput.Juego.Move.ReadValue<Vector2>().y;
 
-        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (_playerInput.Juego.Jump.IsPressed() && readyToJump && grounded)
         {
             readyToJump = false;
-
+            Debug.Log(moveDirection + "jumped");
             Jump();
 
             Invoke(nameof(ResetJump), jumpCooldown);
