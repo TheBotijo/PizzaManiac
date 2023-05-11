@@ -15,18 +15,27 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Shoot",
+                    "name": "Jump",
                     "type": "Button",
-                    "id": "dc95154f-705b-49a5-90ea-68d8c99fda54",
+                    "id": "b407baed-c956-4475-8cc8-b073c7f22f03",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Jump",
+                    "name": "Run",
                     "type": "Button",
-                    "id": "b407baed-c956-4475-8cc8-b073c7f22f03",
+                    "id": "128fd648-279a-4482-b75d-06e3e0b1a42c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "dc95154f-705b-49a5-90ea-68d8c99fda54",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -188,28 +197,6 @@
                 },
                 {
                     "name": "",
-                    "id": "d0a3f185-d900-492f-8ab5-5cc3ff086664",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "239d2b9f-f015-48d1-bf60-b052893b2415",
-                    "path": "<Gamepad>/rightStick/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "0e31f157-2544-4c50-8ff4-f1d8c10f76b2",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
@@ -227,6 +214,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "de8b9988-ece8-4d53-afc6-cff8e38de82a",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fbaefbd0-520f-47d3-96ab-8680b20b4b77",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d0a3f185-d900-492f-8ab5-5cc3ff086664",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "239d2b9f-f015-48d1-bf60-b052893b2415",
+                    "path": "<Gamepad>/rightStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

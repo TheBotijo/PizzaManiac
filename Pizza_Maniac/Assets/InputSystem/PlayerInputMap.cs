@@ -37,18 +37,27 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Shoot"",
+                    ""name"": ""Jump"",
                     ""type"": ""Button"",
-                    ""id"": ""dc95154f-705b-49a5-90ea-68d8c99fda54"",
+                    ""id"": ""b407baed-c956-4475-8cc8-b073c7f22f03"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Jump"",
+                    ""name"": ""Run"",
                     ""type"": ""Button"",
-                    ""id"": ""b407baed-c956-4475-8cc8-b073c7f22f03"",
+                    ""id"": ""128fd648-279a-4482-b75d-06e3e0b1a42c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""dc95154f-705b-49a5-90ea-68d8c99fda54"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -210,28 +219,6 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d0a3f185-d900-492f-8ab5-5cc3ff086664"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""239d2b9f-f015-48d1-bf60-b052893b2415"",
-                    ""path"": ""<Gamepad>/rightStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""0e31f157-2544-4c50-8ff4-f1d8c10f76b2"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
@@ -251,6 +238,50 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""action"": ""Camera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de8b9988-ece8-4d53-afc6-cff8e38de82a"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fbaefbd0-520f-47d3-96ab-8680b20b4b77"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0a3f185-d900-492f-8ab5-5cc3ff086664"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""239d2b9f-f015-48d1-bf60-b052893b2415"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -266,8 +297,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         // Juego
         m_Juego = asset.FindActionMap("Juego", throwIfNotFound: true);
         m_Juego_Move = m_Juego.FindAction("Move", throwIfNotFound: true);
-        m_Juego_Shoot = m_Juego.FindAction("Shoot", throwIfNotFound: true);
         m_Juego_Jump = m_Juego.FindAction("Jump", throwIfNotFound: true);
+        m_Juego_Run = m_Juego.FindAction("Run", throwIfNotFound: true);
+        m_Juego_Shoot = m_Juego.FindAction("Shoot", throwIfNotFound: true);
         m_Juego_Camera = m_Juego.FindAction("Camera", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
@@ -331,16 +363,18 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Juego;
     private IJuegoActions m_JuegoActionsCallbackInterface;
     private readonly InputAction m_Juego_Move;
-    private readonly InputAction m_Juego_Shoot;
     private readonly InputAction m_Juego_Jump;
+    private readonly InputAction m_Juego_Run;
+    private readonly InputAction m_Juego_Shoot;
     private readonly InputAction m_Juego_Camera;
     public struct JuegoActions
     {
         private @PlayerInputMap m_Wrapper;
         public JuegoActions(@PlayerInputMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Juego_Move;
-        public InputAction @Shoot => m_Wrapper.m_Juego_Shoot;
         public InputAction @Jump => m_Wrapper.m_Juego_Jump;
+        public InputAction @Run => m_Wrapper.m_Juego_Run;
+        public InputAction @Shoot => m_Wrapper.m_Juego_Shoot;
         public InputAction @Camera => m_Wrapper.m_Juego_Camera;
         public InputActionMap Get() { return m_Wrapper.m_Juego; }
         public void Enable() { Get().Enable(); }
@@ -354,12 +388,15 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_JuegoActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_JuegoActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_JuegoActionsCallbackInterface.OnMove;
-                @Shoot.started -= m_Wrapper.m_JuegoActionsCallbackInterface.OnShoot;
-                @Shoot.performed -= m_Wrapper.m_JuegoActionsCallbackInterface.OnShoot;
-                @Shoot.canceled -= m_Wrapper.m_JuegoActionsCallbackInterface.OnShoot;
                 @Jump.started -= m_Wrapper.m_JuegoActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_JuegoActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_JuegoActionsCallbackInterface.OnJump;
+                @Run.started -= m_Wrapper.m_JuegoActionsCallbackInterface.OnRun;
+                @Run.performed -= m_Wrapper.m_JuegoActionsCallbackInterface.OnRun;
+                @Run.canceled -= m_Wrapper.m_JuegoActionsCallbackInterface.OnRun;
+                @Shoot.started -= m_Wrapper.m_JuegoActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_JuegoActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_JuegoActionsCallbackInterface.OnShoot;
                 @Camera.started -= m_Wrapper.m_JuegoActionsCallbackInterface.OnCamera;
                 @Camera.performed -= m_Wrapper.m_JuegoActionsCallbackInterface.OnCamera;
                 @Camera.canceled -= m_Wrapper.m_JuegoActionsCallbackInterface.OnCamera;
@@ -370,12 +407,15 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @Shoot.started += instance.OnShoot;
-                @Shoot.performed += instance.OnShoot;
-                @Shoot.canceled += instance.OnShoot;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Run.started += instance.OnRun;
+                @Run.performed += instance.OnRun;
+                @Run.canceled += instance.OnRun;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
                 @Camera.started += instance.OnCamera;
                 @Camera.performed += instance.OnCamera;
                 @Camera.canceled += instance.OnCamera;
@@ -411,8 +451,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
     public interface IJuegoActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnShoot(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnRun(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
         void OnCamera(InputAction.CallbackContext context);
     }
     public interface IMenuActions

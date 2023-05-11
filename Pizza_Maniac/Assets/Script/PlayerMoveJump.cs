@@ -12,6 +12,7 @@ public class PlayerMoveJump : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed;
 
+    float yRotation;
     float horizontalInput;
     float verticalInput;
     public Transform orientation;
@@ -47,7 +48,7 @@ public class PlayerMoveJump : MonoBehaviour
     private void Update()
     {
         //per comprovar si toca terra amb un vector de la meitat de l'altura del personatge + un marge
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight, whatIsGround);
 
         UserInput();
         SpeedControl();
@@ -55,7 +56,9 @@ public class PlayerMoveJump : MonoBehaviour
 
         //comprovem si toca el terra per aplicar un fregament al player
         if (grounded)
+        {
             rb.drag = groundDrag;
+        }        
         else
             rb.drag = 0;
     }
@@ -68,7 +71,6 @@ public class PlayerMoveJump : MonoBehaviour
         if (_playerInput.Juego.Jump.IsPressed() && readyToJump && grounded)
         {
             readyToJump = false;
-            Debug.Log(moveDirection + "jumped");
             Jump();
 
             Invoke(nameof(ResetJump), jumpCooldown);
@@ -76,13 +78,23 @@ public class PlayerMoveJump : MonoBehaviour
     }
     private void PlayMove()
     {
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         //moure's seguint el empty orientació endavant el eix vertical i orientació dreta el eix horitzontal
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         
+
         //apliquem una força al moviment quan esta tocant al terra
-        if(grounded)
+        if (grounded && _playerInput.Juego.Run.IsPressed())
+        {
+            rb.AddForce(moveDirection.normalized * moveSpeed * 20f, ForceMode.Force);
+        }
+        else if (grounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        }
+        else if (!grounded && flatVel.magnitude > (moveSpeed * 8)) //a l'aire
+        {
+            rb.AddForce(moveDirection.normalized * moveSpeed * 20f * airMultiplier, ForceMode.Force);
         }
         else if (!grounded) //a l'aire
         {
