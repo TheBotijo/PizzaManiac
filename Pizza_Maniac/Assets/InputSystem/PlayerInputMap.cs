@@ -64,13 +64,22 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Camera"",
+                    ""name"": ""CameraMove"",
                     ""type"": ""Value"",
                     ""id"": ""66466306-8005-44a7-b03e-f30a704a4c9d"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""CameraChange"",
+                    ""type"": ""Button"",
+                    ""id"": ""f8cc5c9e-d202-4747-91c8-4b7a4826489d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -224,7 +233,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Camera"",
+                    ""action"": ""CameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -235,7 +244,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Camera"",
+                    ""action"": ""CameraMove"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -282,6 +291,28 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dadc6437-0132-485b-a546-4efd1c8c1f75"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""960673d1-cb30-40c1-a777-9c609bb37a1a"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraChange"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -300,7 +331,8 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         m_Juego_Jump = m_Juego.FindAction("Jump", throwIfNotFound: true);
         m_Juego_Run = m_Juego.FindAction("Run", throwIfNotFound: true);
         m_Juego_Shoot = m_Juego.FindAction("Shoot", throwIfNotFound: true);
-        m_Juego_Camera = m_Juego.FindAction("Camera", throwIfNotFound: true);
+        m_Juego_CameraMove = m_Juego.FindAction("CameraMove", throwIfNotFound: true);
+        m_Juego_CameraChange = m_Juego.FindAction("CameraChange", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
     }
@@ -366,7 +398,8 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
     private readonly InputAction m_Juego_Jump;
     private readonly InputAction m_Juego_Run;
     private readonly InputAction m_Juego_Shoot;
-    private readonly InputAction m_Juego_Camera;
+    private readonly InputAction m_Juego_CameraMove;
+    private readonly InputAction m_Juego_CameraChange;
     public struct JuegoActions
     {
         private @PlayerInputMap m_Wrapper;
@@ -375,7 +408,8 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Juego_Jump;
         public InputAction @Run => m_Wrapper.m_Juego_Run;
         public InputAction @Shoot => m_Wrapper.m_Juego_Shoot;
-        public InputAction @Camera => m_Wrapper.m_Juego_Camera;
+        public InputAction @CameraMove => m_Wrapper.m_Juego_CameraMove;
+        public InputAction @CameraChange => m_Wrapper.m_Juego_CameraChange;
         public InputActionMap Get() { return m_Wrapper.m_Juego; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -397,9 +431,12 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @Shoot.started -= m_Wrapper.m_JuegoActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_JuegoActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_JuegoActionsCallbackInterface.OnShoot;
-                @Camera.started -= m_Wrapper.m_JuegoActionsCallbackInterface.OnCamera;
-                @Camera.performed -= m_Wrapper.m_JuegoActionsCallbackInterface.OnCamera;
-                @Camera.canceled -= m_Wrapper.m_JuegoActionsCallbackInterface.OnCamera;
+                @CameraMove.started -= m_Wrapper.m_JuegoActionsCallbackInterface.OnCameraMove;
+                @CameraMove.performed -= m_Wrapper.m_JuegoActionsCallbackInterface.OnCameraMove;
+                @CameraMove.canceled -= m_Wrapper.m_JuegoActionsCallbackInterface.OnCameraMove;
+                @CameraChange.started -= m_Wrapper.m_JuegoActionsCallbackInterface.OnCameraChange;
+                @CameraChange.performed -= m_Wrapper.m_JuegoActionsCallbackInterface.OnCameraChange;
+                @CameraChange.canceled -= m_Wrapper.m_JuegoActionsCallbackInterface.OnCameraChange;
             }
             m_Wrapper.m_JuegoActionsCallbackInterface = instance;
             if (instance != null)
@@ -416,9 +453,12 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
-                @Camera.started += instance.OnCamera;
-                @Camera.performed += instance.OnCamera;
-                @Camera.canceled += instance.OnCamera;
+                @CameraMove.started += instance.OnCameraMove;
+                @CameraMove.performed += instance.OnCameraMove;
+                @CameraMove.canceled += instance.OnCameraMove;
+                @CameraChange.started += instance.OnCameraChange;
+                @CameraChange.performed += instance.OnCameraChange;
+                @CameraChange.canceled += instance.OnCameraChange;
             }
         }
     }
@@ -454,7 +494,8 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
-        void OnCamera(InputAction.CallbackContext context);
+        void OnCameraMove(InputAction.CallbackContext context);
+        void OnCameraChange(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

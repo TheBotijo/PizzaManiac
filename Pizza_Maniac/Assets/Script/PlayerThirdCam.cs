@@ -30,7 +30,7 @@ public class PlayerThirdCam : MonoBehaviour
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         
 
-        float horizontalInput = _playerInput.Juego.Camera.ReadValue<Vector2>().x;
-        float verticalInput = _playerInput.Juego.Camera.ReadValue<Vector2>().y;
+        float horizontalInput = _playerInput.Juego.CameraMove.ReadValue<Vector2>().x;
+        float verticalInput = _playerInput.Juego.CameraMove.ReadValue<Vector2>().y;
     }
 }
