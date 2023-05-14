@@ -22,7 +22,7 @@ public class CameraChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_playerInput.Juego.CameraChange.IsPressed()) 
+        if (_playerInput.Juego.CameraChange.WasPressedThisFrame()) 
         {
             if (CamMode == 1)
             {

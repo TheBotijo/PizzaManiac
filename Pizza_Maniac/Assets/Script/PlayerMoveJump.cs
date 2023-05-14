@@ -68,7 +68,7 @@ public class PlayerMoveJump : MonoBehaviour
         horizontalInput = _playerInput.Juego.Move.ReadValue<Vector2>().x;
         verticalInput = _playerInput.Juego.Move.ReadValue<Vector2>().y;
 
-        if (_playerInput.Juego.Jump.IsPressed() && readyToJump && grounded)
+        if (_playerInput.Juego.Jump.WasPressedThisFrame() && readyToJump && grounded)
         {
             readyToJump = false;
             Jump();
@@ -84,7 +84,7 @@ public class PlayerMoveJump : MonoBehaviour
         
 
         //apliquem una força al moviment quan esta tocant al terra
-        if (grounded && _playerInput.Juego.Run.IsPressed())
+        if (grounded && _playerInput.Juego.Run.WasPressedThisFrame())
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 20f, ForceMode.Force);
         }

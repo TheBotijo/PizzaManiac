@@ -9,6 +9,7 @@ public class PlayerThirdCam : MonoBehaviour
     //new input system
     private PlayerInputMap _playerInput;
     [Header("References")]
+    public Transform orientation;
     public Transform player;
     public Transform playerObj;
     public Rigidbody rb;
@@ -26,11 +27,18 @@ public class PlayerThirdCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //creem un nou vector per anar rotant el que segueix el player
-        Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
-        
+        //Si volguessim que la direccio del player fos dependent de la orientació de la càmara
+        //Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
+        //orientation.forward = viewDir.normalized;
 
-        float horizontalInput = _playerInput.Juego.CameraMove.ReadValue<Vector2>().x;
-        float verticalInput = _playerInput.Juego.CameraMove.ReadValue<Vector2>().y;
+        
+        float horizontalInput = _playerInput.Juego.Move.ReadValue<Vector2>().x;
+        float verticalInput = _playerInput.Juego.Move.ReadValue<Vector2>().y;
+        Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        //Llegim els inputs de direcció i anem rotant l'orientació del player
+        if (inputDir != Vector3.zero)
+        {
+            playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+        }
     }
 }
