@@ -80,17 +80,21 @@ public class PlayerMoveJump : MonoBehaviour
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         //moure's seguint el empty orientació endavant el eix vertical i orientació dreta el eix horitzontal
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        moveDirection = orientation.forward * verticalInput * 4 + orientation.right * horizontalInput;
         
 
         //apliquem una força al moviment quan esta tocant al terra
-        if (grounded && _playerInput.Juego.Run.WasPressedThisFrame())
+        if (grounded && _playerInput.Juego.Run.IsPressed())
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 20f, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * moveSpeed * 40f, ForceMode.Force);
         }
         else if (grounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        }
+        else if(!grounded && flatVel.magnitude == 0)
+        {
+            rb.AddForce(moveDirection.normalized, ForceMode.Force);
         }
         else if (!grounded && flatVel.magnitude > (moveSpeed * 8)) //a l'aire
         {
@@ -114,6 +118,7 @@ public class PlayerMoveJump : MonoBehaviour
             //tornem a aplicar aquesta nova velocitat al player
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
+        
     }
 
     private void Jump()

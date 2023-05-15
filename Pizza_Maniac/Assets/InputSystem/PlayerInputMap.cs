@@ -80,6 +80,15 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""e1d043a2-5431-46f2-ac8a-d2f780fb0beb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -313,6 +322,28 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""action"": ""CameraChange"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e1ecf67-8f42-4d55-9633-ff99232a001d"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""64d601f6-0933-417a-9fa9-b72f09882433"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -333,6 +364,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         m_Juego_Shoot = m_Juego.FindAction("Shoot", throwIfNotFound: true);
         m_Juego_CameraMove = m_Juego.FindAction("CameraMove", throwIfNotFound: true);
         m_Juego_CameraChange = m_Juego.FindAction("CameraChange", throwIfNotFound: true);
+        m_Juego_Aim = m_Juego.FindAction("Aim", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
     }
@@ -400,6 +432,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
     private readonly InputAction m_Juego_Shoot;
     private readonly InputAction m_Juego_CameraMove;
     private readonly InputAction m_Juego_CameraChange;
+    private readonly InputAction m_Juego_Aim;
     public struct JuegoActions
     {
         private @PlayerInputMap m_Wrapper;
@@ -410,6 +443,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Juego_Shoot;
         public InputAction @CameraMove => m_Wrapper.m_Juego_CameraMove;
         public InputAction @CameraChange => m_Wrapper.m_Juego_CameraChange;
+        public InputAction @Aim => m_Wrapper.m_Juego_Aim;
         public InputActionMap Get() { return m_Wrapper.m_Juego; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -437,6 +471,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @CameraChange.started -= m_Wrapper.m_JuegoActionsCallbackInterface.OnCameraChange;
                 @CameraChange.performed -= m_Wrapper.m_JuegoActionsCallbackInterface.OnCameraChange;
                 @CameraChange.canceled -= m_Wrapper.m_JuegoActionsCallbackInterface.OnCameraChange;
+                @Aim.started -= m_Wrapper.m_JuegoActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m_JuegoActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m_JuegoActionsCallbackInterface.OnAim;
             }
             m_Wrapper.m_JuegoActionsCallbackInterface = instance;
             if (instance != null)
@@ -459,6 +496,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @CameraChange.started += instance.OnCameraChange;
                 @CameraChange.performed += instance.OnCameraChange;
                 @CameraChange.canceled += instance.OnCameraChange;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
             }
         }
     }
@@ -496,6 +536,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnCameraMove(InputAction.CallbackContext context);
         void OnCameraChange(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

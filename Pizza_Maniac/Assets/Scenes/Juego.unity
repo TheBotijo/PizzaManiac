@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 152318149}
   - component: {fileID: 152318151}
   m_Layer: 0
-  m_Name: CineMach FreeLook
+  m_Name: CM FreeLook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1142,10 +1142,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 2.56, z: -4.06}
+  m_FollowOffset: {x: 0, y: 1.47, z: -5}
   m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_YDamping: 0
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -2273,10 +2273,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 2.56, z: -4.06}
+  m_FollowOffset: {x: 0, y: 1.47, z: -5}
   m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_YDamping: 0
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -2338,7 +2338,7 @@ GameObject:
   - component: {fileID: 885874662}
   - component: {fileID: 885874661}
   m_Layer: 0
-  m_Name: CineMach Combat
+  m_Name: CM Combat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2352,7 +2352,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885874659}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6240282, y: 1.2313359, z: 3.6475506}
+  m_LocalPosition: {x: 0.41335773, y: 0.14133596, z: 4.5636396}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2396,11 +2396,11 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 2811153826356189334}
+  m_LookAt: {fileID: 971436327}
   m_Follow: {fileID: 2811153826356189334}
   m_CommonLens: 1
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 30
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -2419,7 +2419,7 @@ MonoBehaviour:
   m_YAxis:
     Value: 0.5
     m_SpeedMode: 0
-    m_MaxSpeed: 1.3
+    m_MaxSpeed: 0.5
     m_AccelTime: 0.2
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
@@ -2435,7 +2435,7 @@ MonoBehaviour:
       m_LegacyHeadingDefinition: -1
       m_LegacyVelocityFilterStrength: -1
   m_YAxisRecentering:
-    m_enabled: 0
+    m_enabled: 1
     m_WaitTime: 1
     m_RecenteringTime: 2
     m_LegacyHeadingDefinition: -1
@@ -2469,14 +2469,14 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_BindingMode: 5
-  m_SplineCurvature: 0.495
+  m_SplineCurvature: 0.3
   m_Orbits:
-  - m_Height: 3.1
-    m_Radius: 4.89
-  - m_Height: 2.56
-    m_Radius: 4.06
-  - m_Height: 2.06
-    m_Radius: 4.04
+  - m_Height: 3
+    m_Radius: 3
+  - m_Height: 1.47
+    m_Radius: 5
+  - m_Height: 1.2
+    m_Radius: 3
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 2103830745}
@@ -2622,10 +2622,10 @@ GameObject:
   - component: {fileID: 925315380}
   - component: {fileID: 925315379}
   - component: {fileID: 925315382}
-  - component: {fileID: 925315383}
   - component: {fileID: 925315384}
+  - component: {fileID: 925315385}
   m_Layer: 0
-  m_Name: ThirdCam
+  m_Name: CM Brain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2664,7 +2664,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 30
   orthographic: 0
   orthographic size: 10
   m_Depth: 0
@@ -2689,8 +2689,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 925315378}
-  m_LocalRotation: {x: 0.029330652, y: 0.95942885, z: -0.25841278, w: 0.10889816}
-  m_LocalPosition: {x: 0.6240282, y: 1.2313359, z: 3.6475506}
+  m_LocalRotation: {x: -0.0055976976, y: 0.97873396, z: 0.026951447, w: 0.20327874}
+  m_LocalPosition: {x: 0.41335773, y: 0.14133596, z: 4.5636396}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2731,25 +2731,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &925315383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 925315378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d81de781df6521449933190a0c030729, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orientation: {fileID: 1167662551}
-  player: {fileID: 2811153826356189334}
-  playerObj: {fileID: 2811153826356189334}
-  rb: {fileID: 3191056721216832047}
-  rotationSpeed: 3
-  combatLookAt: {fileID: 0}
-  currentStyle: 0
 --- !u!114 &925315384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2780,6 +2761,26 @@ MonoBehaviour:
   m_DefaultActionMap: Juego
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 925315380}
+--- !u!114 &925315385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925315378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d81de781df6521449933190a0c030729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 1167662551}
+  player: {fileID: 2811153826356189334}
+  playerObj: {fileID: 2811153826356189334}
+  rb: {fileID: 3191056721216832047}
+  combatLookAt: {fileID: 971436327}
+  thirdCam: {fileID: 885874662}
+  rotationSpeed: 1
+  crosshair: {fileID: 1534712145}
 --- !u!1 &937927585
 GameObject:
   m_ObjectHideFlags: 3
@@ -2981,10 +2982,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: 2.56, z: -4.06}
+  m_FollowOffset: {x: 0, y: 1.47, z: -5}
   m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_YDamping: 0
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -3058,7 +3059,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957245899}
-  m_LocalRotation: {x: 0.02933065, y: 0.9594289, z: -0.25841275, w: 0.10889818}
+  m_LocalRotation: {x: -0.005597698, y: 0.9787339, z: 0.026951447, w: 0.20327875}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3095,7 +3096,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 30
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -3136,7 +3137,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 971436326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.492, y: 1.6, z: 0.656}
+  m_LocalPosition: {x: 0.71, y: 1.6, z: 0.656}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3616,6 +3617,7 @@ GameObject:
   - component: {fileID: 1189881898}
   - component: {fileID: 1189881897}
   - component: {fileID: 1189881899}
+  - component: {fileID: 1189881900}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -3658,7 +3660,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 778a2a9582edfb8409e68c961745c233, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3702,6 +3704,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1189881900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189881894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c071373cde573c4092f19bbce764c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pizzasEntregadas: 0
+  currentPizzas: 0
+  spawnPoint: {fileID: 1668014051}
+  deliverPoint: {fileID: 1286685920}
 --- !u!1 &1191207032
 GameObject:
   m_ObjectHideFlags: 0
@@ -4025,7 +4043,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pizzasEntregadas: 0
-  pizzasTotal: 10
+  currentPizzas: 0
+  spawnPoint: {fileID: 0}
+  deliverPoint: {fileID: 0}
 --- !u!1 &1312013532
 GameObject:
   m_ObjectHideFlags: 0
@@ -4505,6 +4525,7 @@ MonoBehaviour:
   - {fileID: 629796053}
   - {fileID: 1148755834}
   deliverPointList:
+  - {fileID: 1774462325}
   - {fileID: 1060983190}
   - {fileID: 923047156}
   - {fileID: 277750747}
@@ -4512,6 +4533,7 @@ MonoBehaviour:
   - {fileID: 1059517168}
   player: {fileID: 3191056721216832044}
   deliverPoint: {fileID: 1286685920}
+  pizzas: 0
 --- !u!114 &1668014052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4842,7 +4864,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800687884}
-  m_LocalRotation: {x: 0.027350256, y: 0.963959, z: -0.2409648, w: 0.10941235}
+  m_LocalRotation: {x: -0.00831598, y: 0.9782859, z: 0.040039264, w: 0.2031857}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4879,7 +4901,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 30
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -5115,7 +5137,7 @@ GameObject:
   - component: {fileID: 2000080895}
   - component: {fileID: 2000080894}
   m_Layer: 5
-  m_Name: Recoger (1)
+  m_Name: Repartir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5457,7 +5479,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2103830743}
-  m_LocalRotation: {x: 0.031306602, y: 0.95456976, z: -0.2758215, w: 0.10834665}
+  m_LocalRotation: {x: -0.002874509, y: 0.97900707, z: 0.013840008, w: 0.20333551}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5494,7 +5516,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 30
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000

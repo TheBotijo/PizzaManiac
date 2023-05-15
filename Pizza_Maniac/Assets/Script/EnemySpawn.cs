@@ -13,6 +13,7 @@ public class EnemySpawn : MonoBehaviour
     private float enemy1Interval = 3.5f;
     [SerializeField]
     private float enemy2Interval = 10f;
+    private int enemies = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,13 +23,12 @@ public class EnemySpawn : MonoBehaviour
 
     private IEnumerator spawnEnemy(float interval, GameObject enemy)
     {
-        yield return new WaitForSeconds(interval);
-        GameObject newEnemy= Instantiate(enemy, new Vector3(Random.Range(-5f,5f), 0.5f, Random.Range(-6f, 6f)), Quaternion.identity);
-        StartCoroutine(spawnEnemy(interval, enemy));
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (enemies < 15)
+        {
+            enemies++;
+            yield return new WaitForSeconds(interval);
+            GameObject newEnemy = Instantiate(enemy, new Vector3(Random.Range(-5f, 5f), 0.5f, Random.Range(-6f, 6f)), Quaternion.identity);
+            StartCoroutine(spawnEnemy(interval, enemy));
+        }
     }
 }
