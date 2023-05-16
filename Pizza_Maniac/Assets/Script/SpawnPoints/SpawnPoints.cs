@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnPoints : MonoBehaviour
 {
-    [SerializeField] int spawnPoints = 6;
+    public int spawnPoints;
     [SerializeField] List<GameObject> spawnPointList;
     [SerializeField] List<GameObject> deliverPointList;
     public GameObject player;
@@ -30,17 +30,16 @@ public class SpawnPoints : MonoBehaviour
         else
         {
             spawnPoint = Random.Range(1, spawnPoints);
-            if (lastPoint == spawnPoint)
+            while (spawnPoint == lastPoint)
             {
                 spawnPoint = Random.Range(1, spawnPoints);
+                Debug.Log("Ha salido el mismo");
             }
-                /*while (lastPoint == spawnPoint)
-                {
-                    spawnPoint = Random.Range(1, spawnPoints);
-                }*/
-                lastPoint = spawnPoint;
+            Debug.Log("Last point avant: " + lastPoint);
+            lastPoint = spawnPoint;
             Debug.Log("Num de pizzas: " + pizzas);
             Debug.Log("Random num: " + spawnPoint);
+            Debug.Log("Last point apres: " + lastPoint);
             deliverPoint.transform.position = deliverPointList[spawnPoint].transform.position;
         }
         

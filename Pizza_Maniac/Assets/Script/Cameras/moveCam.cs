@@ -6,6 +6,7 @@ using UnityEngine;
 public class moveCam : MonoBehaviour
 {
     public Transform cameraPosition;
+    public Transform orientation;
 
     // Update is called once per frame
     void Update()

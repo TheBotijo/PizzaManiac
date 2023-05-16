@@ -15,8 +15,10 @@ public class FirstCam : MonoBehaviour
 
     float xRotation;
     float yRotation;
+    public Camera cam;
 
     private PlayerInputMap _playerInput;
+    public PlayerMoveJump playermove;
     // Start is called before the first frame update
     private void Start()
     {
@@ -28,6 +30,22 @@ public class FirstCam : MonoBehaviour
 
     // Update is called once per frame
     private void Update()
+    {
+        UserInput();
+
+        if (_playerInput.Juego.Aim.IsPressed())
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 25, 10f * Time.deltaTime);
+            playermove.aiming = true;
+        }
+        else
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 35, 10f * Time.deltaTime);
+            playermove.aiming = false;
+        }
+    }
+
+    private void UserInput()
     {
         float mouseX = _playerInput.Juego.CameraMove.ReadValue<Vector2>().x * Time.deltaTime * sensX;
         float mouseY = _playerInput.Juego.CameraMove.ReadValue<Vector2>().y * Time.deltaTime * sensY;

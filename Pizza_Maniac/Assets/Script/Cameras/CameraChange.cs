@@ -9,7 +9,6 @@ public class CameraChange : MonoBehaviour
 
     public GameObject ThirdCam;
     public GameObject FirstCam;
-    public GameObject crosshit;
     public int CamMode;
     private PlayerInputMap _playerInput;
 
@@ -25,13 +24,9 @@ public class CameraChange : MonoBehaviour
         if (_playerInput.Juego.CameraChange.WasPressedThisFrame()) 
         {
             if (CamMode == 1)
-            {
                 CamMode = 0;
-            }
             else
-            {
                 CamMode += 1;
-            }
         } 
         StartCoroutine(CamChange());
     }
@@ -41,7 +36,6 @@ public class CameraChange : MonoBehaviour
         yield return new WaitForSeconds (0.01f);
         if (CamMode == 1)
         {
-            crosshit.SetActive(false);
             ThirdCam.SetActive(true);
             FirstCam.SetActive(false);
             ThirdCam.GetComponent<AudioListener>().enabled = true;
@@ -49,7 +43,6 @@ public class CameraChange : MonoBehaviour
         }
         if(CamMode == 0)
         {
-            crosshit.SetActive(true);
             ThirdCam.SetActive(false);
             FirstCam.SetActive(true);
             ThirdCam.GetComponent<AudioListener>().enabled = false;
