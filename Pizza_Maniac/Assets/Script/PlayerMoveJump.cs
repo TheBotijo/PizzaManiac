@@ -11,12 +11,14 @@ public class PlayerMoveJump : MonoBehaviour
     //Definim variables de Moviment
     [Header("Movement")]
     public float moveSpeed;
+    private float lateSpeed;
 
     float yRotation;
     float horizontalInput;
     float verticalInput;
     public Transform orientation;
     private PlayerInputMap _playerInput;
+    public bool aiming;
     
 
     Vector3 moveDirection;
@@ -37,6 +39,7 @@ public class PlayerMoveJump : MonoBehaviour
 
     private void Start()
     {
+        lateSpeed = moveSpeed;
         _playerInput = new PlayerInputMap();
         _playerInput.Juego.Enable();
         rb = GetComponent<Rigidbody>();
@@ -80,13 +83,18 @@ public class PlayerMoveJump : MonoBehaviour
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         //moure's seguint el empty orientació endavant el eix vertical i orientació dreta el eix horitzontal
-        moveDirection = orientation.forward * verticalInput * 4 + orientation.right * horizontalInput;
-        
+        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
 
         //apliquem una força al moviment quan esta tocant al terra
+        if (aiming)
+            moveSpeed = lateSpeed / 2;
+        else
+            moveSpeed = lateSpeed;
+
         if (grounded && _playerInput.Juego.Run.IsPressed())
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 40f, ForceMode.Force);
+            rb.AddForce(moveDirection.normalized * moveSpeed * 20f, ForceMode.Force);
         }
         else if (grounded)
         {
