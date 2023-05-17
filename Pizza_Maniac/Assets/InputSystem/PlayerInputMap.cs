@@ -89,6 +89,15 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""67ef8aab-582f-4001-a3f6-ea4c32f0ab7b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -344,6 +353,17 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fbfc18a1-2eba-44de-a3d1-327b27c1c4a4"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -365,6 +385,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         m_Juego_CameraMove = m_Juego.FindAction("CameraMove", throwIfNotFound: true);
         m_Juego_CameraChange = m_Juego.FindAction("CameraChange", throwIfNotFound: true);
         m_Juego_Aim = m_Juego.FindAction("Aim", throwIfNotFound: true);
+        m_Juego_Reload = m_Juego.FindAction("Reload", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
     }
@@ -433,6 +454,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
     private readonly InputAction m_Juego_CameraMove;
     private readonly InputAction m_Juego_CameraChange;
     private readonly InputAction m_Juego_Aim;
+    private readonly InputAction m_Juego_Reload;
     public struct JuegoActions
     {
         private @PlayerInputMap m_Wrapper;
@@ -444,6 +466,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         public InputAction @CameraMove => m_Wrapper.m_Juego_CameraMove;
         public InputAction @CameraChange => m_Wrapper.m_Juego_CameraChange;
         public InputAction @Aim => m_Wrapper.m_Juego_Aim;
+        public InputAction @Reload => m_Wrapper.m_Juego_Reload;
         public InputActionMap Get() { return m_Wrapper.m_Juego; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -474,6 +497,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @Aim.started -= m_Wrapper.m_JuegoActionsCallbackInterface.OnAim;
                 @Aim.performed -= m_Wrapper.m_JuegoActionsCallbackInterface.OnAim;
                 @Aim.canceled -= m_Wrapper.m_JuegoActionsCallbackInterface.OnAim;
+                @Reload.started -= m_Wrapper.m_JuegoActionsCallbackInterface.OnReload;
+                @Reload.performed -= m_Wrapper.m_JuegoActionsCallbackInterface.OnReload;
+                @Reload.canceled -= m_Wrapper.m_JuegoActionsCallbackInterface.OnReload;
             }
             m_Wrapper.m_JuegoActionsCallbackInterface = instance;
             if (instance != null)
@@ -499,6 +525,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @Aim.started += instance.OnAim;
                 @Aim.performed += instance.OnAim;
                 @Aim.canceled += instance.OnAim;
+                @Reload.started += instance.OnReload;
+                @Reload.performed += instance.OnReload;
+                @Reload.canceled += instance.OnReload;
             }
         }
     }
@@ -537,6 +566,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         void OnCameraMove(InputAction.CallbackContext context);
         void OnCameraChange(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
