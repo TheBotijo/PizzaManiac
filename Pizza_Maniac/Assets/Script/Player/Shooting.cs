@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
@@ -10,6 +12,7 @@ public class Shooting : MonoBehaviour
     public int magazineSize, bulletsPerTap;
     public bool allowButtonHold;
     int bulletsLeft, bulletsShot;
+    public float time_Damage = 0.5f;
 
     //bools 
     bool shooting, readyToShoot, reloading;
@@ -77,9 +80,17 @@ public class Shooting : MonoBehaviour
         {
             Debug.Log(rayHit.collider.name);
             Debug.Log("Hello world");
+            StartCoroutine(changeColor());
+            GetComponent<EnemyMove>().Health = GetComponent<EnemyMove>().Health - 10;
+            if (GetComponent<EnemyMove>().Health == 0)
+            {
+                GameObject.Destroy(gameObject);
+            }
 
-            GameObject.Find(rayHit.collider.name).GetComponent<Renderer>().material.color = new Color(255, 0, 0);
+
             
+            
+
             /*if (rayHit.collider.CompareTag("Enemy"))
                  rayHit.collider.GetComponent<ShootingAi>().TakeDamage(damage); */
         }
@@ -96,6 +107,13 @@ public class Shooting : MonoBehaviour
 
         if(bulletsShot > 0 && bulletsLeft > 0)
         Invoke("Shoot", timeBetweenShots);
+    }
+    IEnumerator changeColor()
+    {
+        var actual_Color = GameObject.Find(rayHit.collider.name).GetComponent<Renderer>().material.color;
+        GameObject.Find(rayHit.collider.name).GetComponent<Renderer>().material.color = new Color(255, 0, 0);
+        yield return new WaitForSeconds(time_Damage);
+        GetComponent<Renderer>().material.color = new Color(255, 255, 255);
     }
     private void ResetShot()
     {

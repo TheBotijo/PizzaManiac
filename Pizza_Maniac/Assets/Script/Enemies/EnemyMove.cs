@@ -11,6 +11,9 @@ public class EnemyMove : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
+    public int damage = 10;
+    public int Health = 50;
+
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -70,6 +73,21 @@ public class EnemyMove : MonoBehaviour
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            other.GetComponent<Health_Damage>().loseHealth(damage);
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            other.GetComponent<Health_Damage>().loseHealth(damage);
+        }
     }
 
     /*private void AttackPlayer()
