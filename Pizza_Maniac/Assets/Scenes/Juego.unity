@@ -2481,9 +2481,9 @@ MonoBehaviour:
   sensX: 10
   sensY: 5
   orientation: {fileID: 1167662551}
-  playerObj: {fileID: 2811153826356189334}
+  playerObj: {fileID: 7980451870989262406}
   cam: {fileID: 322356479}
-  playermove: {fileID: 3191056721216832046}
+  playermove: {fileID: 7980451870989262413}
 --- !u!1 &339714577
 GameObject:
   m_ObjectHideFlags: 0
@@ -6434,12 +6434,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 1167662551}
-  player: {fileID: 2811153826356189334}
-  playerObj: {fileID: 2811153826356189334}
+  player: {fileID: 7980451870989262406}
+  playerObj: {fileID: 7980451870989262406}
   rb: {fileID: 3191056721216832047}
   combatLookAt: {fileID: 971436327}
   thirdCam: {fileID: 885874662}
-  playermove: {fileID: 3191056721216832046}
+  playermove: {fileID: 7980451870989262413}
   rotationSpeed: 0.5
 --- !u!54 &925315386
 Rigidbody:
@@ -10412,7 +10412,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800687884}
-  m_LocalRotation: {x: 0.01952393, y: 0.026449455, z: -0.0005166767, w: 0.9994594}
+  m_LocalRotation: {x: 0.019523924, y: 0.02644949, z: -0.00051667716, w: 0.9994594}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13992,7 +13992,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 6cbb592524d477e4aae3465137722148, type: 3}
+  - {fileID: 2100000, guid: 932dcd546b82122449969c496767ee74, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14679,7 +14679,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: 6cbb592524d477e4aae3465137722148, type: 3}
+  - {fileID: 2100000, guid: 932dcd546b82122449969c496767ee74, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
