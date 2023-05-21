@@ -30,6 +30,7 @@ public class Shooting : MonoBehaviour
     public TextMeshProUGUI text;
 
     private PlayerInputMap _playerInput;
+    
 
     private void Start()
     {
@@ -80,12 +81,8 @@ public class Shooting : MonoBehaviour
         {
             Debug.Log(rayHit.collider.name);
             Debug.Log("Hello world");
-            //Ejecuta takeDamage del enemigo
-            GetComponent<EnemyMove>().Health = GetComponent<EnemyMove>().Health - 10;
-            if (rayHit.collider.CompareTag("Enemy"))
-            {
-                rayHit.collider.GetComponent<EnemyMove>().TakeDamage();
-            }                 
+            
+            //Ejecuta takeDamage del enemigo                
         }        
         //Graphics
         Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));

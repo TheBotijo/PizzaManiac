@@ -11,7 +11,9 @@ public class EnemyMove : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
-    private Shooting takeDamage;
+    public Shooting takeDamage;
+
+
 
     public int damage = 5;
     public int Health = 50;
@@ -32,6 +34,7 @@ public class EnemyMove : MonoBehaviour
 
     private void Awake()
     {
+
         player = GameObject.Find("Paladin").transform;
         agent = GetComponent<NavMeshAgent>();
     }
@@ -45,6 +48,7 @@ public class EnemyMove : MonoBehaviour
         if (!playerInSightRange && !playerInAttackRange) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        if (takeDamage.rayHit.collider.CompareTag("Enemy")) TakeDamage(); 
     }
 
     private void Patroling()
@@ -93,7 +97,8 @@ public class EnemyMove : MonoBehaviour
     }
 
     public void TakeDamage()
-    {       
+    {
+        Debug.Log("DañoEnemigo");
         GetComponent<Renderer>().material.color = new Color(255, 0, 0);
         Health -= 10;
         if(Health<=0)

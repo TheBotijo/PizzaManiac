@@ -1103,11 +1103,12 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
+  takeDamage: {fileID: 3191056721216832049}
   damage: 5
   Health: 25
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
-  timeBetweenAttacks: 0
+  timeBetweenAttacks: 100
   projectile: {fileID: 0}
   sightRange: 20
   attackRange: 8
@@ -6317,7 +6318,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 925315378}
-  m_LocalRotation: {x: -0.019515097, y: -0.010697704, z: 0.0012287002, w: 0.9997516}
+  m_LocalRotation: {x: -0.019515097, y: -0.010697633, z: 0.0012286918, w: 0.9997516}
   m_LocalPosition: {x: 0.14766116, y: -0.15770727, z: -0.86633044}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6703,7 +6704,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957245899}
-  m_LocalRotation: {x: 0.047337893, y: 0.05158932, z: -0.002448145, w: 0.99754286}
+  m_LocalRotation: {x: 0.047337893, y: 0.05158936, z: -0.0024481467, w: 0.99754286}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7890,6 +7891,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
+  takeDamage: {fileID: 3191056721216832049}
   damage: 10
   Health: 50
   walkPoint: {x: 0, y: 0, z: 0}
@@ -14249,7 +14251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc08b728cf780f42a8f43632e66f20f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 5
   timeBetweenShooting: 0
   spread: 0
   range: 400
@@ -14289,7 +14291,7 @@ MonoBehaviour:
   moving: 1
   healthBar: {fileID: 1011888012}
   animator: {fileID: 3191056721216832051}
-  player: {fileID: 0}
+  player: {fileID: 3191056721216832046}
 --- !u!95 &3191056721216832051
 Animator:
   serializedVersion: 5
