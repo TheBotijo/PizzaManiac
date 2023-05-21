@@ -36,7 +36,7 @@ public class PlayerThirdCam : MonoBehaviour
 
         CinemachineFreeLook vcam = thirdCam;
         vcam.m_CommonLens = true;
-        vcam.m_Lens.FieldOfView = 35;
+        vcam.m_Lens.FieldOfView = 50;
     }
 
     // Update is called once per frame

@@ -48,6 +48,7 @@ public class EnemyMove : MonoBehaviour
         if (!playerInSightRange && !playerInAttackRange) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        //RayCast
         if (takeDamage.rayHit.collider.CompareTag("Enemy")) TakeDamage(); 
     }
 

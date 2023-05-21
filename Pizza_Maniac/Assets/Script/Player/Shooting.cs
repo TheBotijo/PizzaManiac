@@ -16,6 +16,8 @@ public class Shooting : MonoBehaviour
 
     //bools 
     bool shooting, readyToShoot, reloading;
+    //Guns
+    bool pistol=true, ak;
 
     //Reference
     public Camera fpsCam;
@@ -30,6 +32,9 @@ public class Shooting : MonoBehaviour
     public TextMeshProUGUI text;
 
     private PlayerInputMap _playerInput;
+
+    //Animations
+    public Animator animator;
     
 
     private void Start()
@@ -47,12 +52,14 @@ public class Shooting : MonoBehaviour
     private void Update()
     {
         MyInput();
+        ChangeGun();
 
         /*SetText
         text.SetText(bulletsLeft + " / " + magazineSize);*/
     }
     private void MyInput()
     {
+        Zoom();
         if (allowButtonHold) shooting = _playerInput.Juego.Shoot.IsPressed();
         else shooting = _playerInput.Juego.Shoot.WasPressedThisFrame();
 
@@ -65,8 +72,57 @@ public class Shooting : MonoBehaviour
             Shoot();
         }
     }
-    private void Shoot()
+    private void ChangeGun() 
     {
+        if (_playerInput.Juego.ChangeGun.WasPressedThisFrame())
+        {
+            if (pistol == true)
+            {
+                pistol= false;
+                ak = true;
+                damage = 10;
+                timeBetweenShooting = 3f;
+                spread = 0f;
+                range = 400f;
+                reloadTime = 4f;
+                timeBetweenShots = 3f;
+            }
+            else
+            {
+                pistol = true;
+                ak = false;
+                ak = true;
+                damage = 5;
+                timeBetweenShooting = 2f;
+                spread = 0f;
+                range = 200f;
+                reloadTime = 2f;
+                timeBetweenShots = 1f;
+            }
+        }
+    }
+    private void Zoom()
+    {
+        //Animations
+        if (pistol == true && _playerInput.Juego.Aim.IsPressed())
+        {
+            animator.SetBool("SupportPistol",true);
+        }else{ animator.SetBool("SupportPistol", false); }
+        if (ak == true && _playerInput.Juego.Aim.IsPressed())
+        {
+            animator.SetBool("SupportAK", true);
+        }else{ animator.SetBool("SupportAK", false); }
+    }
+    private void Shoot()
+    {   //Animations
+        if (pistol == true)
+        {
+            animator.SetTrigger("Pistol");
+        }
+        if (ak == true)
+        {
+            animator.SetTrigger("Ak");
+        }
         readyToShoot = false;
 
         //Spread
@@ -81,8 +137,7 @@ public class Shooting : MonoBehaviour
         {
             Debug.Log(rayHit.collider.name);
             Debug.Log("Hello world");
-            
-            //Ejecuta takeDamage del enemigo                
+                                     
         }        
         //Graphics
         Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));

@@ -107,6 +107,15 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeGun"",
+                    ""type"": ""Button"",
+                    ""id"": ""e735ff49-6ddc-4f00-9b94-a33ae3be40e8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -393,6 +402,28 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ee80fda6-20a7-4711-b957-6de0fb1c18dc"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeGun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c502bba-39e7-4921-9d7a-428f538737ff"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeGun"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -928,6 +959,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         m_Juego_Aim = m_Juego.FindAction("Aim", throwIfNotFound: true);
         m_Juego_Reload = m_Juego.FindAction("Reload", throwIfNotFound: true);
         m_Juego_Pause = m_Juego.FindAction("Pause", throwIfNotFound: true);
+        m_Juego_ChangeGun = m_Juego.FindAction("ChangeGun", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1008,6 +1040,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
     private readonly InputAction m_Juego_Aim;
     private readonly InputAction m_Juego_Reload;
     private readonly InputAction m_Juego_Pause;
+    private readonly InputAction m_Juego_ChangeGun;
     public struct JuegoActions
     {
         private @PlayerInputMap m_Wrapper;
@@ -1021,6 +1054,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         public InputAction @Aim => m_Wrapper.m_Juego_Aim;
         public InputAction @Reload => m_Wrapper.m_Juego_Reload;
         public InputAction @Pause => m_Wrapper.m_Juego_Pause;
+        public InputAction @ChangeGun => m_Wrapper.m_Juego_ChangeGun;
         public InputActionMap Get() { return m_Wrapper.m_Juego; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1057,6 +1091,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_JuegoActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_JuegoActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_JuegoActionsCallbackInterface.OnPause;
+                @ChangeGun.started -= m_Wrapper.m_JuegoActionsCallbackInterface.OnChangeGun;
+                @ChangeGun.performed -= m_Wrapper.m_JuegoActionsCallbackInterface.OnChangeGun;
+                @ChangeGun.canceled -= m_Wrapper.m_JuegoActionsCallbackInterface.OnChangeGun;
             }
             m_Wrapper.m_JuegoActionsCallbackInterface = instance;
             if (instance != null)
@@ -1088,6 +1125,9 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @ChangeGun.started += instance.OnChangeGun;
+                @ChangeGun.performed += instance.OnChangeGun;
+                @ChangeGun.canceled += instance.OnChangeGun;
             }
         }
     }
@@ -1208,6 +1248,7 @@ public partial class @PlayerInputMap : IInputActionCollection2, IDisposable
         void OnAim(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnChangeGun(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
