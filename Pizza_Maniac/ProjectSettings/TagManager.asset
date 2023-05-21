@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Suelo
   - Deliver
+  - Enemy
   layers:
   - Default
   - TransparentFX

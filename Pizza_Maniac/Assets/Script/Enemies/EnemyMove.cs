@@ -11,7 +11,9 @@ public class EnemyMove : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
 
-    public int damage = 10;
+    private Shooting takeDamage;
+
+    public int damage = 5;
     public int Health = 50;
 
     //Patroling
@@ -20,9 +22,9 @@ public class EnemyMove : MonoBehaviour
     public float walkPointRange;
 
     //Attacking
-    //public float timeBetweenAttacks;
-    //bool alreadyAttacked;
-    //public GameObject projectile;
+    public float timeBetweenAttacks;
+    bool alreadyAttacked;
+    public GameObject projectile;
 
     //States
     public float sightRange, attackRange;
@@ -42,7 +44,7 @@ public class EnemyMove : MonoBehaviour
 
         if (!playerInSightRange && !playerInAttackRange) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        //if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        if (playerInSightRange && playerInAttackRange) AttackPlayer();
     }
 
     private void Patroling()
@@ -90,7 +92,16 @@ public class EnemyMove : MonoBehaviour
         }
     }
 
-    /*private void AttackPlayer()
+    public void TakeDamage()
+    {       
+        GetComponent<Renderer>().material.color = new Color(255, 0, 0);
+        Health -= 10;
+        if(Health<=0)
+        {
+            Destroy(gameObject);
+        }        
+    }
+    private void AttackPlayer()
     {
         //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
@@ -113,5 +124,5 @@ public class EnemyMove : MonoBehaviour
     private void ResetAttack()
     {
         alreadyAttacked = false;
-    }*/
+    }
 }
