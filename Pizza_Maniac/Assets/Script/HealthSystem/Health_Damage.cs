@@ -32,12 +32,13 @@ public class Health_Damage : MonoBehaviour
             healthBar.ChangeActualHealth(health);
             StartCoroutine(Invulnerability());
             animator.SetTrigger("TakeDamage");
-            StartCoroutine(StopVelocity());            
+            StartCoroutine(StopVelocity());
+            if (health <= 0)
+            {
+                StartCoroutine(Death());
+            }
         }
-        if (health <= 0)
-        {            
-            StartCoroutine(Death());
-        }
+        
     }
 
     IEnumerator Invulnerability()
