@@ -9,10 +9,14 @@ public class Health_Damage : MonoBehaviour
     public int maxHealth = 100;
     public bool invencible = false;
     public float time_invencible = 1f;
-    //public float time_Stop = 0.2f;
+    public float time_Stop = 0.5f;
+    public float time_death = 5f;
+    public bool moving = true;
 
     [SerializeField] 
     public HealthBar healthBar;
+    public Animator animator;
+    public PlayerMoveJump player;
 
     public void Start()
     {
@@ -27,13 +31,13 @@ public class Health_Damage : MonoBehaviour
             health -= damage;
             healthBar.ChangeActualHealth(health);
             StartCoroutine(Invulnerability());
-            //StartCoroutine(StopVelocity());
-            if(health <= 0) 
-            {
-                Destroy(gameObject);
-            }
+            animator.SetTrigger("TakeDamage");
+            StartCoroutine(StopVelocity());            
         }
-       
+        if (health <= 0)
+        {            
+            StartCoroutine(Death());
+        }
     }
 
     IEnumerator Invulnerability()
@@ -42,12 +46,19 @@ public class Health_Damage : MonoBehaviour
         yield return new WaitForSeconds(time_invencible);
         invencible = false;
     }
-
-    /*IEnumerator StopVelocity()
+    IEnumerator Death()
     {
-        var actualVelocity = GetComponent<PlayerMoveJump>().moveSpeed;
-        GetComponent<PlayerMoveJump>().moveSpeed = 0;
+        moving = false;
+        animator.SetTrigger("Death");
+        Debug.Log("muerte");
+        yield return new WaitForSeconds(time_death);
+        Destroy(gameObject);
+    }
+    IEnumerator StopVelocity()
+    {
+        Debug.Log("stop");
+        moving = false;
         yield return new WaitForSeconds(time_Stop);
-        GetComponent<PlayerMoveJump>().moveSpeed = actualVelocity;
-    }*/
+        moving = true;
+    }
 }

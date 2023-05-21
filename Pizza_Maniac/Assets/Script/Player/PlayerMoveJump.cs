@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,10 +19,14 @@ public class PlayerMoveJump : MonoBehaviour
     float verticalInput;
     public Transform orientation;
     private PlayerInputMap _playerInput;
+    public Health_Damage HealthDamage;
     public bool aiming;
     
 
     Vector3 moveDirection;
+
+    //Animations
+    public Animator animator;
 
     //Variables de Detecció Ground
     [Header("Ground Check")]
@@ -44,19 +49,48 @@ public class PlayerMoveJump : MonoBehaviour
         _playerInput.Juego.Enable();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation= true;
+       
+        
 
         readyToJump = true;
     }
 
-    private void Update()
+    public void Update()
     {
         //per comprovar si toca terra amb un vector de la meitat de l'altura del personatge + un marge
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight, whatIsGround);
-
-        UserInput();
-        SpeedControl();
-        PlayMove();
-
+        
+            UserInput();
+            SpeedControl();
+            PlayMove();
+        
+        
+        //Animations
+        //walk
+        if (_playerInput.Juego.Move.IsPressed())
+        {
+            animator.SetBool("Walk", true);
+            animator.SetBool("Run", false);
+        }
+        else { animator.SetBool("Walk", false); }
+        //run
+        if (_playerInput.Juego.Run.IsPressed())
+        {            
+            animator.SetBool("Run", true);
+            animator.SetBool("Walk", false);
+            
+        }
+        else { animator.SetBool("Run", false); }
+        //Jump
+        if (_playerInput.Juego.Jump.IsPressed() && animator.GetBool("Run")==true)
+        {
+            animator.SetBool("RunJump",true);          
+        }
+        if (_playerInput.Juego.Jump.IsPressed() && animator.GetBool("Run") == false)
+        {
+            animator.SetBool("Jump", true);  
+        }
+           
         //comprovem si toca el terra per aplicar un fregament al player
         if (grounded)
         {
@@ -95,10 +129,12 @@ public class PlayerMoveJump : MonoBehaviour
         if (grounded && _playerInput.Juego.Run.IsPressed())
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 20f, ForceMode.Force);
+            
         }
         else if (grounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            
         }
         else if(!grounded && flatVel.magnitude == 0)
         {

@@ -80,22 +80,13 @@ public class Shooting : MonoBehaviour
         {
             Debug.Log(rayHit.collider.name);
             Debug.Log("Hello world");
-            StartCoroutine(changeColor());
+            //Ejecuta takeDamage del enemigo
             GetComponent<EnemyMove>().Health = GetComponent<EnemyMove>().Health - 10;
-            if (GetComponent<EnemyMove>().Health == 0)
+            if (rayHit.collider.CompareTag("Enemy"))
             {
-                GameObject.Destroy(gameObject);
-            }
-
-
-            
-            
-
-            /*if (rayHit.collider.CompareTag("Enemy"))
-                 rayHit.collider.GetComponent<ShootingAi>().TakeDamage(damage); */
-        }
-
-        
+                rayHit.collider.GetComponent<EnemyMove>().TakeDamage();
+            }                 
+        }        
         //Graphics
         Instantiate(bulletHoleGraphic, rayHit.point, Quaternion.Euler(0, 180, 0));
         //Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
@@ -108,13 +99,7 @@ public class Shooting : MonoBehaviour
         if(bulletsShot > 0 && bulletsLeft > 0)
         Invoke("Shoot", timeBetweenShots);
     }
-    IEnumerator changeColor()
-    {
-        var actual_Color = GameObject.Find(rayHit.collider.name).GetComponent<Renderer>().material.color;
-        GameObject.Find(rayHit.collider.name).GetComponent<Renderer>().material.color = new Color(255, 0, 0);
-        yield return new WaitForSeconds(time_Damage);
-        GetComponent<Renderer>().material.color = new Color(255, 255, 255);
-    }
+    
     private void ResetShot()
     {
         readyToShoot = true;

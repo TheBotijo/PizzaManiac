@@ -1108,7 +1108,7 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   timeBetweenAttacks: 0
-  projectile: {fileID: 261864019}
+  projectile: {fileID: 0}
   sightRange: 20
   attackRange: 8
   playerInSightRange: 0
@@ -1210,7 +1210,7 @@ MonoBehaviour:
   m_Follow: {fileID: 2811153826356189334}
   m_CommonLens: 1
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 50
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -4682,7 +4682,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1011888010}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5593,7 +5593,7 @@ MonoBehaviour:
   m_Follow: {fileID: 2811153826356189334}
   m_CommonLens: 1
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 50
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -6292,7 +6292,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 50
   orthographic: 0
   orthographic size: 10
   m_Depth: 0
@@ -6317,8 +6317,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 925315378}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.0051080096, y: 0.0000000745058, z: -0.000000010244547, w: 0.999987}
+  m_LocalPosition: {x: -0.0005568117, y: -0.00011081621, z: 0.30383882}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6703,7 +6703,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957245899}
-  m_LocalRotation: {x: 0.066756085, y: 0.062258307, z: -0.0041735815, w: 0.9958163}
+  m_LocalRotation: {x: 0.06166857, y: 0.062278852, z: -0.0038555132, w: 0.99614435}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6740,7 +6740,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 50
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -6858,8 +6858,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1604647134}
   - {fileID: 758590906}
+  - {fileID: 1604647134}
   m_Father: {fileID: 1215844514}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7782,6 +7782,7 @@ GameObject:
   - component: {fileID: 1174470073}
   - component: {fileID: 1174470072}
   - component: {fileID: 1174470071}
+  - component: {fileID: 1174470074}
   m_Layer: 7
   m_Name: Grande
   m_TagString: Enemy
@@ -7896,7 +7897,7 @@ MonoBehaviour:
   timeBetweenAttacks: 0
   projectile: {fileID: 0}
   sightRange: 20
-  attackRange: 0.8
+  attackRange: 0.6
   playerInSightRange: 0
   playerInAttackRange: 0
 --- !u!195 &1174470072
@@ -7937,6 +7938,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &1174470074
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174470066}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9fc06bb2985611f4a88afb4674533488, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1189881894
 GameObject:
   m_ObjectHideFlags: 0
@@ -8970,7 +8991,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447765151}
   m_LocalRotation: {x: 0.0667561, y: 0.062258292, z: -0.0041735815, w: 0.99581635}
-  m_LocalPosition: {x: 1.533951, y: 1.2513359, z: -5.30917}
+  m_LocalPosition: {x: 1.497, y: 1.292, z: -5.608}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9655,7 +9676,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1011888010}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -10358,7 +10379,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800687884}
-  m_LocalRotation: {x: 0.048679546, y: 0.06232379, z: -0.0030434392, w: 0.9968635}
+  m_LocalRotation: {x: 0.038545735, y: 0.062351506, z: -0.0024098747, w: 0.99730676}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10395,7 +10416,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 50
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -12214,7 +12235,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 50
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -14137,6 +14158,7 @@ GameObject:
   - component: {fileID: 3191056721216832045}
   - component: {fileID: 3191056721216832047}
   - component: {fileID: 3191056721216832048}
+  - component: {fileID: 3191056721216832051}
   m_Layer: 6
   m_Name: Paladin
   m_TagString: Player
@@ -14172,7 +14194,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   orientation: {fileID: 1167662551}
+  HealthDamage: {fileID: 0}
   aiming: 0
+  animator: {fileID: 3191056721216832051}
   playerHeight: 3
   whatIsGround:
     serializedVersion: 2
@@ -14273,8 +14297,33 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   invencible: 0
-  time_invencible: 1
+  time_invencible: 1.5
+  time_Stop: 1
+  time_death: 5
+  moving: 1
   healthBar: {fileID: 1011888012}
+  animator: {fileID: 3191056721216832051}
+  player: {fileID: 0}
+--- !u!95 &3191056721216832051
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3191056721216832044}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 058e5a30e44121141aa63c50c4054563, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!4 &3229223045679717347
 Transform:
   m_ObjectHideFlags: 0
