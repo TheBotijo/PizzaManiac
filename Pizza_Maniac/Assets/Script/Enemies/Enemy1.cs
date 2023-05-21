@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-public class EnemyMove : MonoBehaviour
+public class Enemy1 : MonoBehaviour
 {
     public NavMeshAgent agent;
 
@@ -12,8 +12,6 @@ public class EnemyMove : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
 
     public Shooting takeDamage;
-
-
 
     public int damage = 5;
     public int Health = 50;
@@ -26,7 +24,6 @@ public class EnemyMove : MonoBehaviour
     //Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    public GameObject projectile;
 
     //States
     public float sightRange, attackRange;
@@ -48,7 +45,6 @@ public class EnemyMove : MonoBehaviour
         if (!playerInSightRange && !playerInAttackRange) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
-        //RayCast
         if (takeDamage.rayHit.collider.CompareTag("Enemy")) TakeDamage(); 
     }
 
@@ -102,10 +98,10 @@ public class EnemyMove : MonoBehaviour
         Debug.Log("DañoEnemigo");
         GetComponent<Renderer>().material.color = new Color(255, 0, 0);
         Health -= 10;
-        if(Health<=0)
+        if (Health <= 0)
         {
             Destroy(gameObject);
-        }        
+        }
     }
     private void AttackPlayer()
     {
@@ -116,11 +112,10 @@ public class EnemyMove : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            //Attack code
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-
+            ////Attack code
+            //Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            //rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            //rb.AddForce(transform.up * 8f, ForceMode.Impulse);
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
