@@ -11,7 +11,7 @@ public class Shooting : MonoBehaviour
     public float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots;
     public int magazineSize, bulletsPerTap;
     public bool allowButtonHold;
-    int bulletsLeft, bulletsShot;
+    public int bulletsLeft, bulletsShot;
     public float time_Damage = 0.5f;
 
     //bools 
@@ -35,11 +35,9 @@ public class Shooting : MonoBehaviour
 
     //Animations
     public Animator animator;
-    
 
     private void Start()
     {
-
         _playerInput = new PlayerInputMap();
         _playerInput.Juego.Enable();
     }
@@ -53,9 +51,6 @@ public class Shooting : MonoBehaviour
     {
         MyInput();
         ChangeGun();
-
-        /*SetText
-        text.SetText(bulletsLeft + " / " + magazineSize);*/
     }
     private void MyInput()
     {
@@ -68,7 +63,6 @@ public class Shooting : MonoBehaviour
         //Shoot
         if (readyToShoot && shooting && !reloading && bulletsLeft > 0){
             bulletsShot = bulletsPerTap;
-            Debug.Log("Hello");
             Shoot();
         }
     }
@@ -136,7 +130,6 @@ public class Shooting : MonoBehaviour
         if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, range, whatIsEnemy))
         {
             Debug.Log(rayHit.collider.name);
-            Debug.Log("Hello world");
                                      
         }        
         //Graphics

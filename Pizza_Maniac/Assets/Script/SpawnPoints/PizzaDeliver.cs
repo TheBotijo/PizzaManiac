@@ -9,8 +9,11 @@ public class PizzaDeliver : MonoBehaviour
 {
     public int pizzasEntregadas = 0;
     public int currentPizzas;
+    public int totalPizzas;
     public SpawnPoints spawnPoint;
     public GameObject deliverPoint;
+    [HideInInspector]
+    public int rounds = 0;
     //public TextMeshPro repartirText;
 
     private void Start()
@@ -23,8 +26,18 @@ public class PizzaDeliver : MonoBehaviour
         {
             if(currentPizzas == 0)
             {
-                currentPizzas = 10;
 
+                if (rounds == 0)
+                    totalPizzas = 10;
+                if (rounds == 1)
+                    totalPizzas = 5;
+                if (rounds == 2)
+                    totalPizzas = 3;
+                if (rounds == 3) 
+                    totalPizzas = 1;
+
+                currentPizzas = totalPizzas;
+                rounds++;
             }
             else
             {

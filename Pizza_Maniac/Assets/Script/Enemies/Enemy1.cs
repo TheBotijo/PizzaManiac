@@ -32,7 +32,7 @@ public class Enemy1 : MonoBehaviour
     private void Awake()
     {
 
-        player = GameObject.Find("Paladin").transform;
+        player = GameObject.Find("MainCharacter").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 

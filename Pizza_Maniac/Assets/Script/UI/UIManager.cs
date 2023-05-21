@@ -1,87 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.InputSystem;
+using TMPro;
+using Unity.VisualScripting;
 
 public class UIManager : MonoBehaviour
 {
-    //new input system
-    bool GameIsPaused = false;
-    public bool OptionsMenuOpen = false;
-    public GameObject pauseMenuUI;
-    public GameObject UIGeneral;
-    public GameObject pauseBotones;
-    public GameObject pauseOpciones;
-    //new input system
-    public PlayerInputMap _playerInput;
+    //Texts
+    [SerializeField]
+    private TMP_Text TextoPizzas;
+    [SerializeField]
+    private TMP_Text TextoAmmo;
+    [SerializeField]
+    private TMP_Text TextoRounds;
 
-    private void Start()
+    //Scripts
+    public PizzaDeliver pizzas;
+    public Shooting balas;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        _playerInput = new PlayerInputMap();
-        _playerInput.Juego.Enable();
+        
     }
 
+    // Update is called once per frame
     void Update()
     {
+        TextoAmmo.SetText("Ammo: " + balas.bulletsLeft + " / " + balas.magazineSize);
+        TextoPizzas.SetText("Pizzas: " + pizzas.currentPizzas + " / " + pizzas.totalPizzas);
+        TextoRounds.SetText("Round: " + pizzas.rounds);
 
-        if (_playerInput.Juego.Pause.WasPressedThisFrame())
-        {
-            _playerInput.UI.Enable();
-            Debug.Log("Hola");
-            if (OptionsMenuOpen)
-            {
-                Cross();
-            }
-            else if (GameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
-        }
-    }
-
-    public void Resume()
-    {
-        pauseMenuUI.SetActive(false);
-        UIGeneral.SetActive(true);
-        Time.timeScale = 1f;
-        GameIsPaused = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        _playerInput.Juego.Enable();
-    }
-
-    void Pause()
-    {
-        pauseMenuUI.SetActive(true);
-        UIGeneral.SetActive(false);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        Time.timeScale = 0f;
-        GameIsPaused = true;
-    }
-    public void Opciones()
-    {
-        OptionsMenuOpen = true;
-        pauseBotones.SetActive(false);
-        pauseOpciones.SetActive(true);
-
-    }
-    public void Cross()
-    {
-        OptionsMenuOpen = false;
-        pauseBotones.SetActive(true);
-        pauseOpciones.SetActive(false);
-
-    }
-    public void BackToMenu()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-        Time.timeScale = 1f;
+      
     }
 }
