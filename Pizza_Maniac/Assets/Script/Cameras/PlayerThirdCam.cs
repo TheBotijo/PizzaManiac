@@ -43,19 +43,19 @@ public class PlayerThirdCam : MonoBehaviour
     void LateUpdate()
     {
         //Si volguessim que la direccio del player fos dependent de la orientació de la càmara
-        //Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
-        //orientation.forward = viewDir.normalized;
+        Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
+        orientation.forward = viewDir.normalized;
 
-        /*
+        
         float CamHInput = _playerInput.Juego.CameraMove.ReadValue<Vector2>().x;
         float CamVInput = _playerInput.Juego.CameraMove.ReadValue<Vector2>().y;
         
         Vector3 CamDir = orientation.forward * CamVInput + orientation.right * CamHInput;
-        */
-        Vector3 dirToCombat = combatLookAt.position - new Vector3(transform.position.x, combatLookAt.position.y, transform.position.z);
+        
+        //Vector3 dirToCombat = combatLookAt.position - new Vector3(transform.position.x, combatLookAt.position.y, transform.position.z);
 
-        orientation.forward = dirToCombat.normalized;
-        playerObj.forward = dirToCombat.normalized;
+        //orientation.forward = dirToCombat.normalized;
+        //playerObj.forward = dirToCombat.normalized;
 
         float horizontalInput = _playerInput.Juego.Move.ReadValue<Vector2>().x;
         float verticalInput = _playerInput.Juego.Move.ReadValue<Vector2>().y;
