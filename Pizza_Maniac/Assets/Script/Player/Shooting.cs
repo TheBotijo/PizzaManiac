@@ -129,6 +129,7 @@ public class Shooting : MonoBehaviour
         //RayCast
         if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, range, whatIsEnemy))
         {
+            Debug.Log("Holiwis");
             Debug.Log(rayHit.collider.name);
                                      
         }        
